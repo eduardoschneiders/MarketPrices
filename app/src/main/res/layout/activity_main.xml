@@ -34,4 +34,14 @@
         app:layout_constraintTop_toBottomOf="@+id/marketName"
         tools:layout_editor_absoluteX="-3dp" />
 
+    <EditText
+        android:id="@+id/marketId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/marketName"
+        tools:layout_editor_absoluteX="73dp" />
+
 </android.support.constraint.ConstraintLayout>

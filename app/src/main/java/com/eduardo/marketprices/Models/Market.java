@@ -32,10 +32,15 @@ public class Market {
 
     public void save(Context ctx) {
         ContentValues values = new ContentValues();
+        values.put("id", this.id);
         values.put("name", this.name);
 
         DataSource ds = new DataSource(ctx);
-        ds.save(values, TABLE_NAME);
+        if (isNewRecord()){
+            ds.create(values, TABLE_NAME);
+        } else {
+            ds.update(values, TABLE_NAME);
+        }
     }
 
     public static ArrayList<Market> all(Context ctx){
@@ -60,5 +65,9 @@ public class Market {
         String name = cursor.getString(cursor.getColumnIndex("name"));
         Market market = new Market(id, name);
         return market;
+    }
+
+    private boolean isNewRecord(){
+        return this.id  == null;
     }
 }

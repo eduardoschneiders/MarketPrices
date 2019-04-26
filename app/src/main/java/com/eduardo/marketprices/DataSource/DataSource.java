@@ -25,14 +25,16 @@ public class DataSource extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void save(ContentValues values, String table){
-        if (values.containsKey("id") && values.getAsInteger("id") != null && values.getAsInteger("id") != 0){
-            Integer id = values.getAsInteger("id");
-            db.update(table, values, "id=" + id, null);
-        } else {
+    public void create(ContentValues values, String table){
             db.insert(table, null, values);
-        }
     }
+
+    public void update(ContentValues values, String table){
+        Integer id = values.getAsInteger("id");
+        db.update(table, values, "id=" + id, null);
+    }
+
+
 
     public Cursor search(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit){
         return db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
