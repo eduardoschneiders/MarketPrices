@@ -4,45 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MarketActivity">
 
     <Button
-        android:id="@+id/createMarket"
+        android:id="@+id/updateMarket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:text="Create market"
+        android:text="Update"
         app:layout_constraintStart_toEndOf="@+id/marketName"
-        tools:layout_editor_absoluteY="13dp" />
+        tools:layout_editor_absoluteY="26dp" />
 
     <EditText
         android:id="@+id/marketName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Name"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:text="Name"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="29dp" />
 
-    <ListView
-        android:id="@+id/mainListView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="88dp"
-        app:layout_constraintTop_toBottomOf="@+id/marketName"
-        tools:layout_editor_absoluteX="-3dp" />
-
-    <EditText
-        android:id="@+id/marketId"
+    <Button
+        android:id="@+id/deleteMarket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/marketName"
-        tools:layout_editor_absoluteX="73dp" />
+        android:layout_marginTop="52dp"
+        android:text="Delete"
+        app:layout_constraintTop_toBottomOf="@+id/updateMarket"
+        tools:layout_editor_absoluteX="258dp"
+        tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>

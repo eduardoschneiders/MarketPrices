@@ -34,6 +34,11 @@ public class DataSource extends SQLiteOpenHelper {
         db.update(table, values, "id=" + id, null);
     }
 
+    public void delete(ContentValues values, String table){
+        Integer id = values.getAsInteger("id");
+        db.delete(table, "id=" + id, null);
+    }
+
 
 
     public Cursor search(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit){

@@ -6,9 +6,10 @@ import android.database.Cursor;
 
 import com.eduardo.marketprices.DataSource.DataSource;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Market {
+public class Market implements Serializable {
     private static String TABLE_NAME = "markets";
     String name;
     Integer id;
@@ -30,6 +31,10 @@ public class Market {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public void save(Context ctx) {
         ContentValues values = new ContentValues();
         values.put("id", this.id);
@@ -40,6 +45,15 @@ public class Market {
             ds.create(values, TABLE_NAME);
         } else {
             ds.update(values, TABLE_NAME);
+        }
+    }
+
+    public void delete(Context ctx){
+        DataSource ds = new DataSource(ctx);
+        if (!isNewRecord()){
+            ContentValues values = new ContentValues();
+            values.put("id", this.id);
+            ds.delete(values, TABLE_NAME);
         }
     }
 

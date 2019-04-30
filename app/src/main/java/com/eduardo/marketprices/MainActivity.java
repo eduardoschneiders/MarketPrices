@@ -1,5 +1,6 @@
 package com.eduardo.marketprices;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,14 +53,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        final Intent marketIntent;
+        marketIntent = new Intent(this, MarketActivity.class);
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Market market = findMarketByPosition((int) id);
-                marketId.setText(String.valueOf(market.getId()));
-                marketName.setText(market.getName());
-                Util.popUp(getApplicationContext(), String.valueOf(position) + " -> " + market.getId() + ", "+ market.getName());
+
+                marketIntent.putExtra("market", market);
+                startActivity(marketIntent);
             }
         });
     }
