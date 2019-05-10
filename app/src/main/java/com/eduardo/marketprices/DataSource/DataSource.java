@@ -17,7 +17,8 @@ public class DataSource extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DatabaseStructure.createTables());
+        db.execSQL(DatabaseStructure.createMarketsTable());
+        db.execSQL(DatabaseStructure.createProductsTable());
     }
 
     @Override
@@ -38,8 +39,6 @@ public class DataSource extends SQLiteOpenHelper {
         Integer id = values.getAsInteger("id");
         db.delete(table, "id=" + id, null);
     }
-
-
 
     public Cursor search(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit){
         return db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);

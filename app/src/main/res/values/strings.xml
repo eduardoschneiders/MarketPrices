@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Market Prices</string>
     <string name="title_activity_market">Update Market</string>
+    <string name="title_activity_product">ProductActivity</string>
 </resources>
