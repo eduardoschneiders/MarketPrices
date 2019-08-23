@@ -35,7 +35,7 @@ public class MarketActivity extends AppCompatActivity {
         marketName.setText(market.getName());
 
 
-        ArrayList<Product> products = Product.all(getApplicationContext()); //TODO get only products from current Market
+        ArrayList<Product> products = market.products(getApplicationContext());
         ArrayList<String> results = new ArrayList<>();
 
         for (Product product: products){

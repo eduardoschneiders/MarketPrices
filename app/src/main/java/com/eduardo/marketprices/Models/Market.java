@@ -8,6 +8,7 @@ import com.eduardo.marketprices.DataSource.DataSource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Market implements Serializable {
     private static String TABLE_NAME = "markets";
@@ -72,6 +73,12 @@ public class Market implements Serializable {
         }
 
         return results;
+    }
+
+    public ArrayList<Product> products(Context ctx){
+        HashMap<String, String> query = new HashMap<>();
+        query.put("market_id", String.valueOf(this.id));
+        return Product.search(ctx, query);
     }
 
     private static Market buildFromDatabase(Cursor cursor){

@@ -9,6 +9,7 @@ import com.eduardo.marketprices.DataSource.DataSource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Product implements Serializable {
     private static String TABLE_NAME = "products";
@@ -77,6 +78,31 @@ public class Product implements Serializable {
     public static ArrayList<Product> all(Context ctx){
         DataSource ds = new DataSource(ctx);
         Cursor cursor = ds.search(TABLE_NAME, null, null, null, null, null, null, null);
+        ArrayList<Product> results = new ArrayList<>();
+
+        if (cursor.getCount() > 0 ){
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++){
+                Product market = Product.buildFromDatabase(cursor);
+                results.add(market);
+                cursor.moveToNext();
+            }
+        }
+
+        return results;
+    }
+
+    public static ArrayList<Product> search(Context ctx, HashMap<String, String> query){
+        String[] selectionArgs = null;
+        String selection = "";
+
+        selectionArgs = query.values().toArray(new String[0]);
+        for (String key : query.keySet()){
+            selection += key + " = ?";
+        }
+
+        DataSource ds = new DataSource(ctx);
+        Cursor cursor = ds.search(TABLE_NAME, null, selection, selectionArgs, null, null, null, null);
         ArrayList<Product> results = new ArrayList<>();
 
         if (cursor.getCount() > 0 ){
